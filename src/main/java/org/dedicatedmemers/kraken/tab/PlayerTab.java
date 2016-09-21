@@ -3,7 +3,6 @@ package org.dedicatedmemers.kraken.tab;
 
 import org.dedicatedmemers.kraken.Kraken;
 import org.dedicatedmemers.kraken.tab.event.PlayerTabCreateEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 
@@ -13,8 +12,7 @@ import java.util.Objects;
 public class PlayerTab {
 
     public static final int WIDTH = 3;
-
-    public static final int HEIGHT= 20;
+    public static final int HEIGHT = 20;
 
     private final Player player;
 
@@ -33,7 +31,7 @@ public class PlayerTab {
         }
 
         this.scoreboard = player.getScoreboard();
-        Bukkit.getPluginManager().callEvent(new PlayerTabCreateEvent(this));
+        this.player.getServer().getPluginManager().callEvent(new PlayerTabCreateEvent(this));
     }
 
     public Player getPlayer() {
