@@ -3,7 +3,6 @@ package org.dedicatedmemers.kraken.tab;
 
 import org.dedicatedmemers.kraken.Kraken;
 import org.dedicatedmemers.kraken.tab.event.PlayerTabCreateEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 
@@ -33,7 +32,7 @@ public class PlayerTab {
         }
 
         this.scoreboard = player.getScoreboard();
-        Bukkit.getPluginManager().callEvent(new PlayerTabCreateEvent(this));
+        this.player.getServer().getPluginManager().callEvent(new PlayerTabCreateEvent(this));
     }
 
     public Player getPlayer() {
