@@ -2,7 +2,6 @@ package org.dedicatedmemers.kraken;
 
 import org.dedicatedmemers.kraken.tab.PlayerTab;
 import org.dedicatedmemers.kraken.tab.event.PlayerTabRemoveEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,15 +30,15 @@ public class Kraken implements Listener {
     public Kraken(Plugin plugin, Options options) {
 
         // TODO: fiiix
-        if (Bukkit.getMaxPlayers() < 60) {
+        if (getServer().getMaxPlayers() < 60) {
             throw new NumberFormatException("Player limit must be at least 60!");
         }
 
         this.plugin = plugin;
         this.options = options;
         // Do we need the delay?
-        Bukkit.getScheduler().runTask(this.plugin, () -> Bukkit.getOnlinePlayers().forEach(this::checkPlayer));
-        Bukkit.getPluginManager().registerEvents(this, plugin);
+        getServer().getScheduler().runTask(this.plugin, () -> getServer().getOnlinePlayers().forEach(this::checkPlayer));
+        getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     private Optional<PlayerTab> getPlayerTab(Player player) {
@@ -54,7 +53,7 @@ public class Kraken implements Listener {
     @EventHandler
     private void onPlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Bukkit.getScheduler().runTask(this.plugin, () -> checkPlayer(player));
+        getServer().getScheduler().runTask(this.plugin, () -> checkPlayer(player));
     }
 
     @EventHandler
@@ -62,7 +61,7 @@ public class Kraken implements Listener {
         Player player = event.getPlayer();
         getPlayerTab(player, true).ifPresent(playerTab -> {
             player.getScoreboard().getTeams().forEach(this::unregisterFromScoreboard);
-            Bukkit.getPluginManager().callEvent(new PlayerTabRemoveEvent(playerTab));
+            getServer().getPluginManager().callEvent(new PlayerTabRemoveEvent(playerTab));
         });
     }
 
