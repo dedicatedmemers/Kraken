@@ -14,9 +14,10 @@ Light-weight object-oriented Tab-API for the Bukkit/Spigot API
 Instantiate Kraken in your onEnable:
 
   ```java
+private Kraken kraken;
 public void onEnable() {
   //All your other stuff
-  new Kraken(this);
+  this.kraken = new Kraken(this);
 }
   
   ```
@@ -27,7 +28,7 @@ public void onEnable() {
 public void onPlayerTabCreateEvent(PlayerTabCreateEvent event) {
     PlayerTab playerTab = event.getPlayerTab();
 
-    playerTab.getByPosition(0, 0).text("Static Text").send();
+    playerTab.getByPosition(0, 0).setText("Static Text");
 }
 ```
 
