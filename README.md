@@ -15,6 +15,7 @@ Instantiate Kraken in your onEnable:
 
   ```java
 private Kraken kraken;
+
 public void onEnable() {
   //All your other stuff
   this.kraken = new Kraken(this);
